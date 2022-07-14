@@ -15,6 +15,8 @@ class _LoginScreenState extends State<LoginScreen> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
 
+  /// initialize success to 1
+  /// userEmail to store email of user for later retrieval
   int _success = 1;
   String _userEmail = "";
   String _userPassword = "";
@@ -24,6 +26,8 @@ class _LoginScreenState extends State<LoginScreen> {
             email: _emailController.text, password: _passwordController.text))
         .user;
 
+    /// setting success to 2 for successful sign-in
+    /// setting success to 3 if user is unable to sign-in
     if (user != null) {
       setState(() {
         _success = 2;
@@ -71,7 +75,7 @@ class _LoginScreenState extends State<LoginScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const SizedBox(
-                height: 20.0,
+                height: 10.0,
               ),
               const Text("Email"),
               TextFormField(
@@ -79,7 +83,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 decoration: const InputDecoration(border: OutlineInputBorder()),
               ),
               const SizedBox(
-                height: 20.0,
+                height: 10.0,
               ),
               const Text("Password"),
               TextFormField(
@@ -95,6 +99,9 @@ class _LoginScreenState extends State<LoginScreen> {
                 padding:
                     const EdgeInsets.symmetric(vertical: 10, horizontal: 16),
                 child: Text(
+                  /// when success has it's default value, nothing happens
+                  /// but when it is 2, it shows user is not null and sign-in is
+                  /// successful now
                   _success == 1
                       ? ""
                       : (_success == 2
